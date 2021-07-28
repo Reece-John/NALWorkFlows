@@ -1,1 +1,0 @@
-This project automates the anual turnover at National Assistance League.
