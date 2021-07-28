@@ -22,6 +22,7 @@ $chWorkFlowMasterConfigObjs += $chWorkFlowMasterConfigObj
 foreach($obj in $chWorkFlowMasterConfigObjs)
 {
     Write-Host("Calling CHWorkFlowMasterTask.ps1 for " + $obj.tenantAbbreviation);
+    
     if($obj.tenantAbbreviation -eq "NAL")
     {
         .\WorkFlowTask\CHWorkFlowMasterTask.ps1 -tenantAbbreviation $obj.tenantAbbreviation -justTesting $obj.testRunOnly;
