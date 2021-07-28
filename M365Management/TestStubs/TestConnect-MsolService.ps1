@@ -3,7 +3,7 @@ Clear-Host;
 
 Import-Module MSOnline -UseWindowsPowerShell
 
-[string]$tenantAbbreviation = "ALGA";
+[string]$tenantAbbreviation = "NAL";
 
 # get administrator credentials
 [System.Management.Automation.PSCredential]$tenantCredentials = .\Common\ReturnTenantCredentials.ps1 -tenantAbbreviation $tenantAbbreviation;

@@ -3,23 +3,23 @@
 
 # How to set environment variable (Machine wide)
 [Environment]::SetEnvironmentVariable("MasterScripts", "E:\MasterPSScripts",                  "Machine")
-[Environment]::SetEnvironmentVariable("PSStartup",     "C:\PSScripts\ALGA",                   "Machine")
-[Environment]::SetEnvironmentVariable("CStorage",      "C:\PSScripts\ALGA\Common",            "Machine")
+[Environment]::SetEnvironmentVariable("PSStartup",     "C:\PSScripts\NAL",                   "Machine")
+[Environment]::SetEnvironmentVariable("CStorage",      "C:\PSScripts\NAL\Common",            "Machine")
 
 # add to path
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
 
 # How to set environment variable (User Only)
-[Environment]::SetEnvironmentVariable("DevStartup", "C:\Users\mjohn_r7awhu6\Source\Repos\ALGA\ALGA", "User")
+[Environment]::SetEnvironmentVariable("DevStartup", "C:\Users\mjohn_r7awhu6\Source\Repos\NAL\NAL", "User")
 
 # How to read environment variable (User Only)
 $startDirectory = [Environment]::GetEnvironmentVariable("DevStartup","User");
 
 # How to set environment variable (Machine wide)
 [Environment]::SetEnvironmentVariable("SiteName", "QPT", "Machine");
-[Environment]::SetEnvironmentVariable("SiteName", "ALGA", "Machine");
+[Environment]::SetEnvironmentVariable("SiteName", "NAL", "Machine");
  How to set environment variable (User only)
-[Environment]::SetEnvironmentVariable("SiteName", "ALGA", "User");
+[Environment]::SetEnvironmentVariable("SiteName", "NAL", "User");
 
 # How to read environment variable (Machine wide)
 $SiteLocation = [Environment]::GetEnvironmentVariable("SiteName","Machine");

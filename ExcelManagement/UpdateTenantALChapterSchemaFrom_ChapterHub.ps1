@@ -12,13 +12,13 @@
 Preconditions:
     $chCSVFilePathAndName must exist
     $m365SchemaFilePathAndName must exist
-    ALGASchema File must have a sheet inside it named $m365UsersSheetName
+    NALSchema File must have a sheet inside it named $m365UsersSheetName
     $masterLogFile directory must exist
 
 Load $chCSVFilePathAndName objects
 Open $m365SchemaFilePathAndName
 foreach $chObj in chObjs
-    search for corresponding record in ALGASchema
+    search for corresponding record in NALSchema
     if(!there)
         Insert record at end and resort
     else
@@ -1089,7 +1089,7 @@ process {
     #$xl.Visible = $true;
     #endregion setup Excel objects
 
-    #region ALGASchema.xlsx M365Users Sheet column definitions
+    #region NALSchema.xlsx M365Users Sheet column definitions
     [int]$DisplayNameCol                     = 01;  # A
     [int]$IndividualIDCol                    = 02;  # B
     [int]$ChapterEmailCol                    = 03;  # C
@@ -1147,13 +1147,13 @@ process {
     [string]$FirstNameLetter = Convert-ToLetter $FirstNameCol;
     [string]$LastNameLetter = Convert-ToLetter $LastNameCol;
 
-    #endregion ALGASchema.xlsx column definitions
+    #endregion NALSchema.xlsx column definitions
 
 
-    #region ALGASchema.xlsx UpdateStatus Sheet column definitions
+    #region NALSchema.xlsx UpdateStatus Sheet column definitions
     $LastUpdateDateTimeCol = 01;  # A
     $LastProcessCol        = 02;  # B
-    #endregion ALGASchema.xlsx column definitions
+    #endregion NALSchema.xlsx column definitions
 
     #region MonthAbreviations
     [string[]]$MonthAbreviations = @("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
@@ -1171,7 +1171,7 @@ process {
     [PSObject]$chListObjs = Import-Csv -Path $chCSVFilePathAndName;
     #endregion load object arrays
 
-    # open ALGASchema spreadsheet
+    # open NALSchema spreadsheet
     $wb = $xl.Workbooks.Open($m365SchemaFilePathAndName);
 
     # open m365Users page

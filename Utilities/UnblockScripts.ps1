@@ -19,6 +19,6 @@ Get-Item * -Stream "Zone.Identifier" -ErrorAction SilentlyContinue;
 
 # This unblocks file that are blocked in the specified directory command
 
-$dirPath = "C:\PSScripts\ALGA\*.ps1";
+$dirPath = "C:\PSScripts\NAL\*.ps1";
 
 dir $dirPath | Unblock-File;

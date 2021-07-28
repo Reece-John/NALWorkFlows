@@ -36,7 +36,7 @@ function Validate_EnvironmentVariable([string]$varName, [string]$varValue, [stri
 }
 
 # Starts Here
-$chapterSiteName = "ALGA";
+$chapterSiteName = "NAL";
 $DomainName = "ALGeorgetownArea";
 $DomainExtension = ".org";
 $uName = $null;

@@ -13,9 +13,9 @@ $dateRightNow = Get-Date;
 $myCredentials = .\Common\ReturnCredentials.ps1;
 
 # Configuration Variables
-$mySiteURL = "https://algeorgetownarea.sharepoint.com/sites/ALGAChapterTeam";
+$mySiteURL = "https://algeorgetownarea.sharepoint.com/sites/NALChapterTeam";
 $myDestinationPath = "/Shared Documents/General/ChapterRoster";
-$mySourceFilePath ="C:\PSScripts\ALGA\ExcelDataFiles\Chapter Roster.xlsx";
+$mySourceFilePath ="C:\PSScripts\NAL\ExcelDataFiles\Chapter Roster.xlsx";
 
 # Debug write statements
 if($true)

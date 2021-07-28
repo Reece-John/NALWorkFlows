@@ -1,1 +1,1 @@
-cd C:\PSScripts\ALGA
+cd C:\PSScripts\NAL

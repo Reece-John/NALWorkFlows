@@ -136,7 +136,7 @@ Clear-Host;
 $startLoc = [Environment]::GetEnvironmentVariable("PSStartup","Machine");
 Set-Location $startLoc;
 
-[string]$filePathName = "C:\PSScripts\ExcelDataFiles\ALGASchema.xlsx";
+[string]$filePathName = "C:\PSScripts\ExcelDataFiles\NALSchema.xlsx";
 
 #load team objects from file
 [PSObject]$objTeams = LoadTeamObjectsFromExcelFile $filePathName
@@ -170,11 +170,11 @@ foreach($objTeam in $objTeams)
     {
         if($teamMemberObj.MemberType -eq "Owner")
         {
-            Add-TeamUser -GroupId $teamGroup.GroupId -Owner $teamMemberObj.ALGAEmail;
+            Add-TeamUser -GroupId $teamGroup.GroupId -Owner $teamMemberObj.NALEmail;
         }
         else
         {
-            Add-TeamUser -GroupId $teamGroup.GroupId -User $teamMemberObj.ALGAEmail;
+            Add-TeamUser -GroupId $teamGroup.GroupId -User $teamMemberObj.NALEmail;
         }
     }
 }

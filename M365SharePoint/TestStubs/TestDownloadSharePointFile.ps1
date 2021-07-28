@@ -10,7 +10,7 @@ $DownloadFileName = "ALChapterSchema.xlsx";
 $SiteURL = "https://ALGeorgetownArea.sharepoint.com/sites/TechnologyTeam";
 #$FileRelativeURL = "/sites/TechnologyTeam/Shared Documents/M365Management/M365DataFiles/" + $DownloadFileName;
 $FileRelativeURL = "/sites/TechnologyTeam/Shared Documents/M365Management/M365DataFiles/" + $DownloadFileName;
-$DownloadPath ="C:\PSScripts\ALGA\ExcelDataFiles";
+$DownloadPath ="C:\PSScripts\NAL\ExcelDataFiles";
 
 # create the log file name
 $dateRightNow = Get-Date;

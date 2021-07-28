@@ -18,11 +18,11 @@ Clear-Host;
 $machineUsage = [Environment]::GetEnvironmentVariable("MachineUsage","Machine");
 if($machineUsage -ne "Production")
 {
-    $startLoc = [Environment]::GetEnvironmentVariable("DevStartup","User");
+    $startLoc = [Environment]::GetEnvironmentVariable("NALDevStartup","User");
     Set-Location $startLoc;
 }
 
-[string]$tenantAbbreviation = "ALGA";
+[string]$tenantAbbreviation = "NAL";
 
 # get tenant specific variable values
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation;

@@ -5,7 +5,7 @@
 #Set Variables
 Clear-Host;
 
-$tenantAbbreviation = "ALGA";
+$tenantAbbreviation = "NAL";
 
 # get tenant specific variable values
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation;

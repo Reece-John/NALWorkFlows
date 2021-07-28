@@ -8,7 +8,7 @@ Clear-Host;
 $startLoc = [Environment]::GetEnvironmentVariable("DevStartup","User");
 Set-Location $startLoc;
 
-$tenantAbbreviation= "ALGA";
+$tenantAbbreviation= "NAL";
 
 [PSCustomObject]$tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation
 [string]$downloadPath = $tenantObj.PSStartUpDir + "\ExcelDataFiles"

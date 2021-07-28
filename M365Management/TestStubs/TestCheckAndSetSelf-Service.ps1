@@ -3,7 +3,7 @@
 
 Clear-Host;
 
-[string]$tenantAbbreviation = "ALGA";
+[string]$tenantAbbreviation = "NAL";
 
 # get tenant specific variable values
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation;

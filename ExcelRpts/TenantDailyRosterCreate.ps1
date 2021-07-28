@@ -23,7 +23,7 @@ Reason Updated: Original
 
 Preconditions:
     $m365SchemaFilePathAndName must exist
-    ALGASchema File must have sheets inside it named $m365UsersSheetName, $m365roleBasedEmailAddressesSheetName
+    NALSchema File must have sheets inside it named $m365UsersSheetName, $m365roleBasedEmailAddressesSheetName
     $masterLogFilePathAndName directory must exist
 
 Load $m365Schema objects
@@ -732,7 +732,7 @@ process {
     {
         if($null -eq $masterLogFilePathAndName) {Write-Output("masterLogFile parameter is null"); exit;}
         #region log startup info
-        $logMessage = "Start up UpdateALGASchemaFrom_chDocument.ps1 with args:";
+        $logMessage = "Start up UpdateNALSchemaFrom_chDocument.ps1 with args:";
         .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
         $logMessage = "workbookFilePathAndName: " + $workbookFilePathAndName;
         .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
@@ -1474,12 +1474,12 @@ process {
         $empty_Var = [System.Type]::Missing
         $true_Var = [System.Type]::true
 
-        $membershipWS.Protect("algA900115!", $true);
-        $birthdaysThisMonthWS.Protect("algA900115!", $true_Var);
-        $birthdaysNextMonthWS.Protect("algA900115!", $true_Var);
-        $emergencyContactsWS.Protect("algA900115!", $true_Var);
-        $rolebasedEmailsWS.Protect("algA900115!", $true_Var);
-        $wb.Protect("algA900115!", $empty_Var, $empty_Var);
+        $membershipWS.Protect("NAL900115!", $true);
+        $birthdaysThisMonthWS.Protect("NAL900115!", $true_Var);
+        $birthdaysNextMonthWS.Protect("NAL900115!", $true_Var);
+        $emergencyContactsWS.Protect("NAL900115!", $true_Var);
+        $rolebasedEmailsWS.Protect("NAL900115!", $true_Var);
+        $wb.Protect("NAL900115!", $empty_Var, $empty_Var);
     }
 
     #region clean up Excel stuff

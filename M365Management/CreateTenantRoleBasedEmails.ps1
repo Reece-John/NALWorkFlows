@@ -21,7 +21,7 @@
 #>
 <# Role-based email user has the following items set in Microsoft 365 profile
         Example:
-        First name: "ALGA" (Chapter acronym)
+        First name: "NAL" (Chapter acronym)
         Last name: "AccountsReceivable"
     Display name: "AccountsReceivable"
         Job title: "Role-based Email"
@@ -314,7 +314,7 @@ process {
     .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
 
     #region load object arrays from Excel sheets
-    $algaTenantDefaultsObj = LoadObjectsFromExcelFile $alChapterSchemaFilePathAndName $tenantDefaultsPageName $tenantDefaultsStartRow;
+    $NALTenantDefaultsObj = LoadObjectsFromExcelFile $alChapterSchemaFilePathAndName $tenantDefaultsPageName $tenantDefaultsStartRow;
     $rolebasedEmailObjs = LoadObjectsFromExcelFile $alChapterSchemaFilePathAndName $rolebasedEmailsPageName $rolebasedEmailsStartRow;
     #endregion load object arrays from Excel sheets
 
@@ -349,16 +349,16 @@ process {
                     # Create SharedRole-based Email box
                     $logMessage = "create new shared Role-based email: " + $rolebasedEMailAddress;
                     .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
-                    CreateSharedRoleBasedEmail $algaTenantDefaultsObj $rolebasedEMailObj;
+                    CreateSharedRoleBasedEmail $NALTenantDefaultsObj $rolebasedEMailObj;
                 }
             }
             else
             {
-                $rolebasedEMailName = $algaTenantDefaultsObj + " " +$rolebasedEMailObj.LastName;
+                $rolebasedEMailName = $NALTenantDefaultsObj + " " +$rolebasedEMailObj.LastName;
                 $logMessage = "Updating shared Role-based Email if Needed: " + $rolebasedEMailAddress;
                 .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
                 $xx = 5;
-                UpdateIfSharedRoleBasedEmailProfileDifferent $algaTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
+                UpdateIfSharedRoleBasedEmailProfileDifferent $NALTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
             }
         }
         else
@@ -379,7 +379,7 @@ process {
                         # need to make new Individual Role-based Email user here
                         $logMessage = "create new Individual role-based email: " + $rolebasedEMailAddress;
                         .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
-                        CreateRoleBasedEmail $algaTenantDefaultsObj $rolebasedEMailObj;
+                        CreateRoleBasedEmail $NALTenantDefaultsObj $rolebasedEMailObj;
                     }
                 }
                 else
@@ -388,7 +388,7 @@ process {
                     $logMessage = "Update new Individual role-based email: " + $rolebasedEMailAddress;
                     .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
                     # update Role-based Email user as needed
-                    #UpdateIfRoleBasedEmailUserProfileDifferent $algaTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
+                    #UpdateIfRoleBasedEmailUserProfileDifferent $NALTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
                 }
             }
             else
@@ -409,7 +409,7 @@ process {
                             # need to make Role-based Email user here
                             $logMessage = "Create new Automation email: " + $rolebasedEMailAddress;
                             .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
-                            CreateRoleBasedEmail $algaTenantDefaultsObj $rolebasedEMailObj;
+                            CreateRoleBasedEmail $NALTenantDefaultsObj $rolebasedEMailObj;
                         }
                     }
                     else
@@ -418,7 +418,7 @@ process {
                         $logMessage = "Update Automation email if Needed: " + $rolebasedEMailAddress;
                         .\LogManagement\WriteToLogFile -logFile $masterLogFilePathAndName -message $logMessage;
                         # update Role-based Email user as needed
-                        #UpdateIfRoleBasedEmailUserProfileDifferent $algaTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
+                        #UpdateIfRoleBasedEmailUserProfileDifferent $NALTenantDefaultsObj $rolebasedEMailObj $roleEmailUserObj $justTestingOnly;
                     }
                 }
                 else

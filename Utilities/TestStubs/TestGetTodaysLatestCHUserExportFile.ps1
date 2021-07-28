@@ -6,7 +6,7 @@ Clear-Host;
 $startLoc = [Environment]::GetEnvironmentVariable("DevStartup","User");
 Set-Location $startLoc;
 
-[string]$tenantAbbreviation = "ALGA";
+[string]$tenantAbbreviation = "NAL";
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation;
 
 

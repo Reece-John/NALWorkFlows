@@ -11,7 +11,7 @@ if($machineUsage -ne "Production")
     Set-Location $startLoc;
 }
 
-[string]$tenantAbbreviation = "ALGA";
+[string]$tenantAbbreviation = "NAL";
 
 .\ExcelRpts\TaskStubs\TaskTenantDailyRosterCreate.ps1 $tenantAbbreviation;
 

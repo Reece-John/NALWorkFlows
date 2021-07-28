@@ -12,7 +12,7 @@ Write-Host($startLoc);
 Set-Location $startLoc;
 
 
-$tenantAbbreviation = "ALGA";
+$tenantAbbreviation = "NAL";
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 $tenantAbbreviation;
 $connectionUri = "https://outlook.office365.com/powershell-liveid/";
 
