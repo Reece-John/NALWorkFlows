@@ -1,0 +1,45 @@
+*** https://stackoverflow.com/questions/60124810/what-is-the-difference-between-pwsh-and-powershell-integrated-console-on-vs#:~:text=VSCode%20%28Visual%20Studio%20Code%29%20has%20an%20integrated%20terminal,dropdown%20list%20in%20the%20integrated%20terminal%27s%20toolbar%3B%20e.g.%3A
+Different PowerShell versions integrated
+
+*** https://blog.pauby.com/post/creating-enums-in-powershell/
+*Creating Enums in PowerShell 5
+enum RebelBase { 
+        D_Qar;
+        Dantooine;
+        Hoth;
+        Yavin_4
+}
+* use
+PS> $base = [RebelBase]::Hoth
+PS> $base
+Hoth
+
+
+***** https://blog.pauby.com/post/force-powershell-to-use-tls-1-2/
+* Force PowerShell to use TLS 1.3
+* you should be able to miss the 'System.' and just use 'Net.'
+PS> [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls13
+
+# Get the PowerShell supported TLS versions
+PS> [enum]::GetNames([Net.SecurityProtocolType])
+
+SystemDefault
+Ssl3
+Tls
+Tls11
+Tls12
+
+*** PowerShell Parameter list of values
+https://stackoverflow.com/questions/21640598/powershell-parameter-list-of-values
+
+param(
+    [Parameter()]
+    [ValidateSet('foo','bar','baz')]
+    [string[]]
+    $Item
+)
+
+*** PowerShell Day By Day: The Pipeline
+https://www.sqlservercentral.com/articles/powershell-day-by-day-the-pipeline
+
+

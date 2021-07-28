@@ -1,0 +1,68 @@
+<#************************************************************************
+Convert user mailbox to shared mailbox
+Convert shared mailbox to user mailbox
+https://www.nucleustechnologies.com/blog/convert-a-user-mailbox-to-shared-a-shared-mailbox-to-user-mailbox-in-office-365/?utm_source=sw&utm_campaign=office365backupblog&utm_medium=f
+#>
+
+<#************************************************************************
+How to Send Email with Office 365 Direct Send and PowerShell
+
+https://adamtheautomator.com/office-365-direct-send-smtp/
+
+MX record information
+Type Priority HostName Points to address or value
+---- -------- -------- -------------------------------------------
+MX   0        @        algeorgetownarea-org.mail.protection.outlook.com
+
+
+# Get the credential
+$credential = Get-Credential
+
+## Define the Send-MailMessage parameters
+$mailParams = @{
+    SmtpServer                 = 'smtp.ofxxxfice365.com'
+    Port                       = '587' # or '25' if not using TLS
+    UseSSL                     = $true ## or not if using non-TLS
+    Credential                 = $credential
+    From                       = 'sender@yourdomain.com'
+    To                         = 'recipient@yourdomain.com', 'recipient@NotYourDomain.com'
+    Subject                    = "SMTP Client Submission - $(Get-Date -Format g)"
+    Body                       = 'This is a test email using SMTP Client Submission'
+    DeliveryNotificationOption = 'OnFailure', 'OnSuccess'
+}
+
+## Send the message
+Send-MailMessage @mailParams
+************************************************************************#>
+
+
+<#************************************************************************
+Forward email to another email address (Inside domain and outside domain)
+http://www.office365forbiz.com/set-mailbox-forwarding-in-office-365-using-powershell/
+
+
+Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy Unrestricted
+$LiveCred = Get-Credential
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell/ -Credential $LiveCred -Authentication Basic -AllowRedirection
+Import-PSSession $Session 
+Connect-MsolService
+Import-Module Msonline
+
+<#
+Once you have got through all that good stuff and entered you admin username and password you can actually do the deed.
+
+There are two useful options here. The first sets the mailbox to foward but doesn’t keep a copy so when you look in the mailbox 
+  it will always be empty and then the second which does keep a copy.
+  
+  Make sure you pick the right one.
+#>
+
+Set-Mailbox ringo.starr@mycompany.com –ForwardingSmtpAddress ringo@abbeyroad.com –DeliverToMailboxAndForward $false
+Set-Mailbox ringo.starr@mycompany.com –ForwardingSmtpAddress ringo@abbeyroad.com –DeliverToMailboxAndForward $true
+
+<# role based email address #>
+Set-Mailbox President@algeorgetownarea.org –ForwardingSmtpAddress jswain@algeorgetownarea.org –DeliverToMailboxAndForward $true
+
+
+************************************************************************#>

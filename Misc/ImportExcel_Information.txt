@@ -1,0 +1,15 @@
+*******
+To Install: Install -Module ImportExcel
+This is a set of commands to import and export excel file
+*******
+Doug Finke
+Training: https://www.youtube.com/watch?v=kzllxvqr3TY&list=PL5uoqS92stXioZw-u-ze_NtvSo0k0K0kq&index=5
+Source:
+https://github.com/dfinke/ImportExcel
+
+
+Blog:
+https://blogs.technet.microsoft.com/heyscriptingguy/2015/11/25/introducing-the-powershell-excel-module-2/
+
+Interesting Link:
+https://blogs.technet.microsoft.com/heyscriptingguy/2015/11/25/introducing-the-powershell-excel-module-2/

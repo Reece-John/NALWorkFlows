@@ -1,0 +1,38 @@
+#General instructions on how to set environment variables
+# these must be modified to reflect needs for different sites
+
+# How to set environment variable (Machine wide)
+[Environment]::SetEnvironmentVariable("MasterScripts", "E:\MasterPSScripts",                  "Machine")
+[Environment]::SetEnvironmentVariable("PSStartup",     "C:\PSScripts\ALGA",                   "Machine")
+[Environment]::SetEnvironmentVariable("CStorage",      "C:\PSScripts\ALGA\Common",            "Machine")
+
+# add to path
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
+
+# How to set environment variable (User Only)
+[Environment]::SetEnvironmentVariable("DevStartup", "C:\Users\mjohn_r7awhu6\Source\Repos\ALGA\ALGA", "User")
+
+# How to read environment variable (User Only)
+$startDirectory = [Environment]::GetEnvironmentVariable("DevStartup","User");
+
+# How to set environment variable (Machine wide)
+[Environment]::SetEnvironmentVariable("SiteName", "QPT", "Machine");
+[Environment]::SetEnvironmentVariable("SiteName", "ALGA", "Machine");
+ How to set environment variable (User only)
+[Environment]::SetEnvironmentVariable("SiteName", "ALGA", "User");
+
+# How to read environment variable (Machine wide)
+$SiteLocation = [Environment]::GetEnvironmentVariable("SiteName","Machine");
+$startDirectory = [Environment]::GetEnvironmentVariable("PSStartup","Machine");
+$cStorageDirectory = [Environment]::GetEnvironmentVariable("CStorage","Machine");
+
+# How to read environment variable (User Only)
+$SiteLocation = [Environment]::GetEnvironmentVariable("SiteName","User");
+
+# How to remove  environment variable (Machine wide)
+[Environment]::SetEnvironmentVariable("SiteName",$null,"Machine")
+[Environment]::SetEnvironmentVariable("PSStartup",$null,"Machine")
+
+# How to remove  environment variable (User Only)
+[Environment]::SetEnvironmentVariable("SiteName",$null,"User")
+[Environment]::SetEnvironmentVariable("DevStartup",$null,"User")

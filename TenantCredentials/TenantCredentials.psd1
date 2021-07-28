@@ -1,0 +1,3 @@
+#
+# TenantCredentials.psd1
+#

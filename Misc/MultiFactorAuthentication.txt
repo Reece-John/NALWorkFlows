@@ -1,0 +1,38 @@
+
+
+#PS Must connect to Msol to use these scripts
+<#
+Enable Multi-Factor Authentication for users with PowerShell
+In order to enable MFA for a user with PowerShell, we need to use the the object Microsoft.Online.Administration.StrongAuthenticationRequirement and put that with some additional settings in to the StrongAuthenticationRequirements attribute.
+
+Note: After enabling MFA, the user will have to login through the portal and enroll their MFA methods and eventual app passwords before they will be able to logon to the services again.
+
+#>
+#Create the StrongAuthenticationRequirement object and insert required settings
+$mf= New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
+$mf.RelyingParty = "*"
+$mfa = @($mf)
+#Enable MFA for a user
+Set-MsolUser -UserPrincipalName aaron.beverly@365lab.net -StrongAuthenticationRequirements $mfa
+ 
+#Enable MFA for all users (use with CAUTION!)
+Get-MsolUser -All | Set-MsolUser -StrongAuthenticationRequirements $mfa
+ 
+#Disable MFA for a user
+$mfa = @()
+Set-MsolUser -UserPrincipalName aaron.beverly@365lab.net -StrongAuthenticationRequirements $mfa
+
+
+
+
+<#
+Find your Multi Factor Authentication enabled users
+If we want to know what users that have MFA enabled, the attribute 
+StrongAuthenticationRequirements tells us that a user has MFA enabled, 
+and the attribute StrongAuthenticationMethods tells us that a user has enrolled 
+their MFA methods (Phone, App, Text etc.).
+#>
+Get-MsolUser | Where-Object {$_.StrongAuthenticationRequirements -like "*"}  | select UserPrincipalName,StrongAuthenticationMethods,StrongAuthenticationRequirements
+ 
+#Find all MFA enabled users that have enrolled their MFA methods
+Get-MsolUser | Where-Object {$_.StrongAuthenticationMethods -like "*"}  | select UserPrincipalName,StrongAuthenticationMethods,StrongAuthenticationRequirements

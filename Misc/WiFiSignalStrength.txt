@@ -1,0 +1,2 @@
+********* From PowerShell or CommandLine ***********
+netsh wlan show interfaces

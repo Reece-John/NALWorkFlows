@@ -1,0 +1,152 @@
+//< ****************************************
+// Publisher Example with PowerShell
+https://stackoverflow.com/questions/31843926/replacing-text-in-microsoft-publisher-using-powershell
+
+//< ****************************************
+// Connect to newer Exchange PowerShell Modules
+https://4sysops.com/archives/install-powershell-for-exchange-online-on-a-workstation/
+
+//< ****************************************
+// Download file from SharePoint
+https://sharepoint.stackexchange.com/questions/277383/download-file-from-sharepoint-online-with-powershell
+
+//< ****************************************
+// Set user photo exchange connection
+https://docs.microsoft.com/en-us/powershell/module/exchange/set-userphoto?view=exchange-ps
+
+//< ****************************************
+// Manage SharePoint files
+https://docs.microsoft.com/en-us/powershell/module/sharepoint-pnp/get-pnpfile?view=sharepoint-ps
+https://www.youtube.com/watch?v=PbusAK1tMjU&feature=youtu.be
+
+//< ****************************************
+// Create SSL certificate with letsencrypt.org 
+https://github.com/rmbolger/Posh-ACME/blob/master/Tutorial.md
+
+//< ****************************************
+// Manage Teams
+https://veronicageek.com/powershell/powershell-for-o365/install-connect-microsoft-teams-module-powershell/2017/12/
+
+//< ****************************************
+// Manage Office 365 with Office 365 Powershell
+https://docs.microsoft.com/en-us/office365/enterprise/powershell/manage-office-365-with-office-365-powershell
+
+//< ****************************************
+// Powershell trouble shoot M365 Mailbox issues
+https://support.microsoft.com/en-us/help/4051375/mailbox-is-not-provisioned-in-azure-ad-connect-for-office-365
+
+//< ****************************************
+// Powershell onedrive module methods requires lib module download
+https://example-code.com/powershell/onedrive.asp
+
+//< ****************************************
+// Powershell network adapter module methods
+https://thinkpowershell.com/configure-static-ip-address-or-dhcp
+
+//< ****************************************
+PowerShell Training
+
+https://powershell.org/videos/
+https://channel9.msdn.com/Tags/powershell?page=1
+
+
+// **>
+
+//< ***************************************
+Scripting with Windows PowerShell: 
+
+https://docs.microsoft.com/en-us/powershell/scripting/powershell-scripting?view=powershell-6
+
+// **>
+
+//< ***************************************
+PowerShell Home: 
+
+** GOOD ONE ***
+
+https://docs.microsoft.com/en-us/powershell/
+
+// **>
+
+//< ***************************************
+DevOps Collective:
+https://github.com/devops-collective-inc
+
+// **>
+
+//< ***************************************
+Microsoft Virtual Academy:
+https://mva.microsoft.com/en-US/training-courses/whats-new-in-powershell-v5-16434?l=Oq4Os59VC_2506218965
+
+// **>
+
+//< ***************************************
+Install and configure an FTP server with PowerShell:
+https://4sysops.com/archives/install-and-configure-an-ftp-server-with-powershell/
+
+// **>
+
+//< ***************************************
+Folder Redirection:
+https://medium.com/tech-jobs-academy/configuring-folder-redirection-through-group-policy-b38d1faeb833
+
+PowerShell group policy module
+https://docs.microsoft.com/en-us/powershell/module/grouppolicy/?view=win10-ps
+
+// **>
+
+//< ***************************************
+PowerShell login scripts
+https://www.bing.com/videos/search?q=update+group+policy+powershell&&view=detail&mid=133A65593FA23F3947CA133A65593FA23F3947CA&&FORM=VDRVRV
+
+// **>
+
+
+//< ***************************************
+Add Network Location, Map FTP Drive in Windows 10/8/7
+https://www.thewindowsclub.com/map-an-ftp-drive-windows
+
+// **>
+
+//< ***************************************
+FTP Server with User Isolation on Windows Server 2012 R2 (Each user gets a different FTP root)
+http://woshub.com/ftp-site-with-user-isolation-on-windows-server-2012-r2/
+
+// **>
+
+//< ***************************************
+IS - Managing FTP sites with PowerShell
+https://peter.hahndorf.eu/blog/iisftp.html
+
+// **>
+
+
+//< ***************************************
+samAccountName vs userPrincipalName
+https://www.morgantechspace.com/2014/04/samaccountname-vs-userprincipalname.html
+// **>
+
+
+//< ***************************************
+Map drive using group policies
+https://www.youtube.com/watch?v=9QYTBs_aTwA
+// **>
+
+//< ***************************************
+PowerShell Training Video: 40 min
+https://www.netwrix.com/most_useful_powershell_cmdlets_for_managing_and_securing_active_directory?encQryStr=3aV%2FUsTgCuevVRdYmVYlFaSn7g3qv7mUGdaezdbz3SaG3v3fqWYil6fmsQ8sDUxGYBPjdAP3HxAGo5f31K6CK2OEvaB%2BDYwGuTddh7T%2FWFY%3D&iv=ZjV4Ar6q1ipnLDVVOMa%2B0w%3D%3D&mkt_tok=eyJpIjoiWW1KbE9HSXpOREl5TkdVeSIsInQiOiJGRjFQOHlncmVcLzZEUW5XXC9JU2ZIeE5VeGluMld4Q1wvUHFlVWlaaG5lWWhKMkprb0lUSWF2SlE0eWdKZGVHamhxa0M4aHliZGVjOTg0T1d0UU5WdU1CdVkwUVJFeFBJeW1jclZQSXQ5Z2RBR2JsWVRXTzBwOXFZdGE3bnNHZTFpYiJ9&utm_source=email&utm_medium=featured-webinar&utm_campaign=global-20190219-powershell-2wave-leads-plain-text
+// **>
+
+//< ***************************************
+PowerShell Training Slide Deck with examples in it
+https://www.netwrix.com/download/webinars/presentations/most-useful-powershell-cmdlets-for-managing-and-securing-active-directory.pdf
+// **>
+
+
+//< ***************************************
+Excel comObject example
+https://www.howtobuildsoftware.com/index.php/how-do/c0Ua/powershell-how-to-sort-an-excel-column-using-powershell
+
+//< ***************************************
+technet gallery - lots of interesting stuff
+https://gallery.technet.microsoft.com/office/Create-banners-using-28546c6f

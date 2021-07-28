@@ -1,0 +1,48 @@
+*** Excel CONCAT of email address
+=LOWER(CONCAT(CONCAT(LEFT(G14,1),I14),"@alsanantonio.org"))
+
+*** Excel Color Code for formatting
+http://www.cosonok.com/2014/01/powershell-color-codes-and-formatting.html
+
+*** Excel constants and other good stuff
+https://learn-powershell.net/2012/12/24/powershell-and-excel-adding-a-chart-and-header-filter-to-a-report/
+
+*** open with a password
+https://daniellange.wordpress.com/2009/12/03/working-with-excel-in-powershell/
+
+*** How to copy formating from range to another range
+Microsoft.Office.Tools.Excel.NamedRange rangeStyles =
+    this.Controls.AddNamedRange(this.Range["A1"], "rangeStyles");
+
+rangeStyles.Value2 = "'Style Test";
+rangeStyles.Style = "NewStyle";
+rangeStyles.Columns.AutoFit();
+
+
+*** more documentation
+https://docs.microsoft.com/en-us/previous-versions/office/developer/office-2010/ms252898(v=office.14)
+
+*** excellent link for many tips; Create Excel file, Merge Cells, Format Title, Auto-size Columns
+https://community.spiceworks.com/how_to/137203-create-an-excel-file-from-within-powershell
+
+*** Excel API documentation
+https://docs.microsoft.com/en-us/office/vba/api/excel.xlhalign
+
+
+*** Excel API documentation
+https://docs.microsoft.com/en-us/office/vba/api/excel.font.tintandshade
+
+
+*** Excel border around a range
+https://docs.microsoft.com/en-us/office/vba/api/Excel.Range.BorderAround
+
+*** Export to Excel PDF
+https://devblogs.microsoft.com/scripting/save-a-microsoft-excel-workbook-as-a-pdf-file-by-using-powershell/
+
+
+*** Several Excel tips
+https://www.zacoding.com/en/post/powershell-excel-to-pdf/
+
+
+https://learn-powershell.net/2012/12/20/powershell-and-excel-adding-some-formatting-to-your-report/
+

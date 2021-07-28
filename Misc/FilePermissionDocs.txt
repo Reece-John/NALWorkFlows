@@ -1,0 +1,30 @@
+
+https://blog.netwrix.com/2018/04/18/how-to-manage-file-system-acls-with-powershell-scripts/
+
+#****************************************
+Access Right				Access Right's Name in PowerShell
+--------------------------- ---------------------------------
+Full Control				FullControl
+Modify						Modify
+Read & execute				ReadAndExecute
+Read						Read
+Write						Write
+
+Special permissions
+List folder contents		
+List folder / Read Data		ReadData
+
+
+#****************************************
+Permission Inheritance
+$acl = Get-Acl \\fs1\shared\sales
+
+[bool]$BlockInheritanceFromParent = $true;
+[bool]$RetainCurrentInheritedPermissionsFromParent = $true;
+$acl.SetAccessRuleProtection($BlockInheritanceFromParent, $RetainCurrentInheritedPermissionsFromParent)
+
+$acl | Set-Acl \\fs1\shared\sales
+
+#****************************************
+Folder Sharing
+
