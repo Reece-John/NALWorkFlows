@@ -5,7 +5,7 @@ Task to run all steps (Tasks) in CHWorkFlow (Chapter Hub WorkFlow)
 
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALGW")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
      ,[Parameter(Mandatory=$True,Position=1)][bool]$justTesting
 )
 begin {}

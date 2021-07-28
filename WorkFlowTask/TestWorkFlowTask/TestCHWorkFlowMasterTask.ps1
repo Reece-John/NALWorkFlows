@@ -10,30 +10,19 @@ if($machineUsage -ne "Production")
 
 # create chWorkFlowMasterConfig array to hold the different chapter Workflow configurations
 $chWorkFlowMasterConfigObjs = @();
-#ALGA
+#NAL
 $chWorkFlowMasterConfigObj = [PSCustomObject]@{
-    tenantAbbreviation = 'ALGA'
+    tenantAbbreviation = 'NAL'
     testRunOnly        = $true
 }
 $chWorkFlowMasterConfigObjs += $chWorkFlowMasterConfigObj
 
-#ALSA
-$chWorkFlowMasterConfigObj = [PSCustomObject]@{
-    tenantAbbreviation = 'ALSA'
-    testRunOnly        = $true
-}
-$chWorkFlowMasterConfigObjs += $chWorkFlowMasterConfigObj
-#ALGW
-$chWorkFlowMasterConfigObj = [PSCustomObject]@{
-    tenantAbbreviation = 'ALGW'
-    testRunOnly        = $true
-}
 $chWorkFlowMasterConfigObjs += $chWorkFlowMasterConfigObj
 
 foreach($obj in $chWorkFlowMasterConfigObjs)
 {
     Write-Host("Calling CHWorkFlowMasterTask.ps1 for " + $obj.tenantAbbreviation);
-    if($obj.tenantAbbreviation -eq "ALGA")
+    if($obj.tenantAbbreviation -eq "NAL")
     {
         .\WorkFlowTask\CHWorkFlowMasterTask.ps1 -tenantAbbreviation $obj.tenantAbbreviation -justTesting $obj.testRunOnly;
     }

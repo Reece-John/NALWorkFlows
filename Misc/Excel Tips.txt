@@ -1,5 +1,5 @@
 *** Excel CONCAT of email address
-=LOWER(CONCAT(CONCAT(LEFT(G14,1),I14),"@alsanantonio.org"))
+=LOWER(CONCAT(CONCAT(LEFT(G14,1),I14),"@assistanceleague.org"))
 
 *** Excel Color Code for formatting
 http://www.cosonok.com/2014/01/powershell-color-codes-and-formatting.html

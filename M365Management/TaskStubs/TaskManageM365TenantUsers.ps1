@@ -19,7 +19,7 @@ Updated Date: 02/20/2021
 
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
      ,[Parameter(Mandatory=$True,Position=1)][bool]$justTesting
       )
 begin {}

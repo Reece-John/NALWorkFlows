@@ -5,7 +5,7 @@
 # Tenant testing
 Clear-Host;
 
-[string]$tenantAbbreviation = "ALSA";
+[string]$tenantAbbreviation = "NAL";
 
 
 # Set relative Location based off of production Machine or development machine
@@ -14,7 +14,7 @@ Clear-Host;
 $machineUsage = [Environment]::GetEnvironmentVariable("MachineUsage","Machine");
 if($null -eq $machineUsage -or $machineUsage -ne "Production")
 {
-    $startLoc = [Environment]::GetEnvironmentVariable("DevStartup","User");
+    $startLoc = [Environment]::GetEnvironmentVariable("NALDevStartup","User");
     Set-Location $startLoc;
 }
 

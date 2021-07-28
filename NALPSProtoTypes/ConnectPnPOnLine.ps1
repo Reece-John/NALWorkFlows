@@ -5,9 +5,7 @@
 
 Clear-Host;
 
-#$tenantAbbreviation = "ALGA";
-#$tenantAbbreviation = "ALSA";
-$tenantAbbreviation = "ALLV";
+$tenantAbbreviation = "NAL";
 
 # get tenant specific variable values
 $tenantObj = .\Common\ReturnTenantSpecificVariables.ps1 -tenantAbbreviation $tenantAbbreviation;
@@ -23,20 +21,9 @@ Connect-PnPOnline -Url $connectUrl -Credentials $psAdminCredentials
 
 [string]$userIdentity = "";
 
-if($tenantAbbreviation -eq "ALGA")
+if($tenantAbbreviation -eq "NAL")
 {
-    $userIdentity ="mjohn@ALgeorgetownarea.org";
-}
-
-if($tenantAbbreviation -eq "ALSA")
-{
-    $userIdentity ="mjohn@ALSanAntonio.org";
-}
-
-if($tenantAbbreviation -eq "ALLV")
-{
-    $userIdentity ="mjohn@ALLV.org";
-    #$userIdentity ="cwarman@ALLV.org";
+    $userIdentity ="mjohn@AssistanceLeague.org";
 }
 
 Get-PnPAzureADUser -Identity $userIdentity;

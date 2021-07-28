@@ -30,9 +30,7 @@ function Make_a_Directory([string]$dirName)
 #starts here
 clear-Host;
 
-#[string]$tenantAbbreviation = "ALGA";
-[string]$tenantAbbreviation = "ALSA";
-#[string]$tenantAbbreviation = "ALLV";
+[string]$tenantAbbreviation = "NAL";
 
 [string]$baseScriptsDir = "c:\PSScripts\$tenantAbbreviation\";
 

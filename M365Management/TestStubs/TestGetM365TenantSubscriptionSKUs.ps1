@@ -10,7 +10,7 @@ if($machineUsage -ne "Production")
 
 Disconnect-ExchangeOnline -ErrorAction SilentlyContinue;
 
-[string]$tenantAbbreviation = "ALSA";
+[string]$tenantAbbreviation = "NAL";
 
 .\M365Management\TaskStubs\TaskGetM365SubscriptionSKUs.ps1 $tenantAbbreviation;
 

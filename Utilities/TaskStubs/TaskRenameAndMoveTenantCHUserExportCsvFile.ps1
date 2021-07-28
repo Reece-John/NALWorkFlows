@@ -20,7 +20,7 @@ Updated Date: 11/14/2020
 #>
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
      ,[Parameter(Mandatory=$True,Position=1)][bool]$justTesting
       )
 begin {}
@@ -71,8 +71,8 @@ process
         }
         else
         {
-           if ($tenantAbbreviation -eq "ALGA") { #ALGA expects to get it every night
-               $logMessage = "Sending Email to ALGA CHWorkFlow monitors. returnFileName: " + $returnFileName;
+           if ($tenantAbbreviation -eq "NAL") { #NAL expects to get it every night
+               $logMessage = "Sending Email to NAL CHWorkFlow monitors. returnFileName: " + $returnFileName;
                .\LogManagement\WriteToLogFile -logFile $myMasterLogFilePathAndName -message $logMessage;
                if(!$justTesting)
                {

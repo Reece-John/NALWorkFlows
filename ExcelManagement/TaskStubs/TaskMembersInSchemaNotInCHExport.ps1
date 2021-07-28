@@ -14,7 +14,7 @@ Updated Date: 06/16/2021
 #>
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
 )
 begin {}
 process
@@ -73,9 +73,9 @@ process
     }
     else
     {
-        if($tenantAbbreviation -eq "ALSA")
+        if($tenantAbbreviation -eq "NAL")
         {
-            $chExportDownloadFileName = "ALSA User Export 20210106 120800.csv";
+            $chExportDownloadFileName = "NAL User Export 20210106 120800.csv";
         }
     }
     #endregion get name of latest copy of Chapter Hub user CSV export file

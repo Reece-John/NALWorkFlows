@@ -11,7 +11,7 @@ if($machineUsage -ne "Production")
 
 Disconnect-ExchangeOnline -ErrorAction SilentlyContinue;
 
-[string]$tenantAbbreviation = "ALSA";
+[string]$tenantAbbreviation = "NAL";
 
 .\M365Management\TaskStubs\TaskCreateTenantRoleBasedEmails.ps1 $tenantAbbreviation;
 

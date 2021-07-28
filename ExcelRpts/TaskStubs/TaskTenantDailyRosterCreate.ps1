@@ -18,7 +18,7 @@ Updated Date: 02/23/2021
 
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
      ,[Parameter(Mandatory=$True,Position=1)][bool]$justTesting
       )
 begin {}
@@ -103,8 +103,8 @@ process {
     [string]$templateBirthdaysNextMonthPageName = "Birthdays Next Month";
     [string]$templateEmergencyContactPageName = "Emergency Contact Information";
     [string]$templateRolebasedEmailsSheetName = "Role-based Emails Information";
-    [string]$algaUsersPageName = "M365Users";
-    [string]$algaRoleBasedEmailsSheetName = "RoleBasedEmailAddresses";
+    [string]$NALUsersPageName = "M365Users";
+    [string]$NALRoleBasedEmailsSheetName = "RoleBasedEmailAddresses";
     [bool]$protectWbAndSheets = $true;
     [string]$typeOfReportToMake = "ChapterRoster";
     $chapterRosterPdfFilePathAndName = "Not Used";
@@ -121,15 +121,15 @@ process {
                                             -rosterEmergencyContactsSheetName $templateEmergencyContactPageName `
                                             -rosterRolebasedEmailsSheetName $templateRolebasedEmailsSheetName `
                                             -m365SchemaFilePathAndName $schemaFilePathName `
-                                            -m365UsersSheetName $algaUsersPageName `
-                                            -m365roleBasedEmailAddressesSheetName $algaRoleBasedEmailsSheetName  `
+                                            -m365UsersSheetName $NALUsersPageName `
+                                            -m365roleBasedEmailAddressesSheetName $NALRoleBasedEmailsSheetName  `
                                             -protectWorkBookAndSheets $protectWbAndSheets `
                                             -typeOfReport $typeOfReportToMake `
                                             -masterLogFilePathAndName $myMasterLogFilePathAndName;
 
     # upload "Chapter Roster.xlsx" to Chapter Team Storage Site
     # Configuration Variables
-    $uploadSiteURL = "https://" + $tenantDomain + ".sharepoint.com/sites/ALGAChapterTeam";
+    $uploadSiteURL = "https://" + $tenantDomain + ".sharepoint.com/sites/NALChapterTeam";
     $uploadFileRelativeURL = "/Shared Documents/General/ChapterRoster";
     # one of the parameters is set above for the copy command to use also
     if($uploadChapterRoster)
@@ -164,17 +164,17 @@ process {
                                             -rosterEmergencyContactsSheetName $templateEmergencyContactPageName `
                                             -rosterRolebasedEmailsSheetName $templateRolebasedEmailsSheetName `
                                             -m365SchemaFilePathAndName $schemaFilePathName `
-                                            -m365UsersSheetName $algaUsersPageName `
-                                            -m365roleBasedEmailAddressesSheetName $algaRoleBasedEmailsSheetName  `
+                                            -m365UsersSheetName $NALUsersPageName `
+                                            -m365roleBasedEmailAddressesSheetName $NALRoleBasedEmailsSheetName  `
                                             -protectWorkBookAndSheets $protectWbAndSheets `
                                             -typeOfReport $typeOfReportToMake `
                                             -masterLogFilePathAndName $myMasterLogFilePathAndName;
       
     # Store Chapter Roster.pdf file in SharePoint storage
     # Configuration Variables
-    $uploadSiteURL = "https://algeorgetownarea.sharepoint.com/sites/ALGAChapterTeam";
+    $uploadSiteURL = "https://algeorgetownarea.sharepoint.com/sites/NALChapterTeam";
     $uploadFileRelativeURL = "/Shared Documents/General/ChapterRoster";
-    $mySourceFilePath ="C:\PSScripts\ALGA\ExcelDataFiles\Chapter Roster.pdf";
+    $mySourceFilePath ="C:\PSScripts\NAL\ExcelDataFiles\Chapter Roster.pdf";
     if($uploadPDFRoster)
     {
         .\M365SharePoint\UpLoadSharePointFile.ps1 -tenantCredentials $psAdminCredentials `
@@ -205,17 +205,17 @@ process {
                                             -rosterEmergencyContactsSheetName $templateEmergencyContactPageName `
                                             -rosterRolebasedEmailsSheetName $templateRolebasedEmailsSheetName `
                                             -m365SchemaFilePathAndName $schemaFilePathName `
-                                            -m365UsersSheetName $algaUsersPageName `
-                                            -m365roleBasedEmailAddressesSheetName $algaRoleBasedEmailsSheetName  `
+                                            -m365UsersSheetName $NALUsersPageName `
+                                            -m365roleBasedEmailAddressesSheetName $NALRoleBasedEmailsSheetName  `
                                             -protectWorkBookAndSheets $protectWbAndSheets `
                                             -typeOfReport $typeOfReportToMake `
                                             -masterLogFilePathAndName $myMasterLogFilePathAndName;
       
     # Store excel-to-PDF file in SharePoint storage
     # Configuration Variables
-    $uploadSiteURL = "https://algeorgetownarea.sharepoint.com/sites/ALGAChapterTeam";
+    $uploadSiteURL = "https://algeorgetownarea.sharepoint.com/sites/NALChapterTeam";
     $uploadFileRelativeURL = "/Shared Documents/General/ChapterRoster";
-    $mySourceFilePath ="C:\PSScripts\ALGA\ExcelDataFiles\Chapter Emergency Contacts.pdf";
+    $mySourceFilePath ="C:\PSScripts\NAL\ExcelDataFiles\Chapter Emergency Contacts.pdf";
     if($uploadPDFEmergencyContacts)
     {
         .\M365SharePoint\UpLoadSharePointFile.ps1 -tenantCredentials $psAdminCredentials `

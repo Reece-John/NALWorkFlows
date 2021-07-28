@@ -12,7 +12,7 @@ Updated Date: 02/20/2021
 
 [cmdletbinding()]
 Param(
-      [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+      [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
 )
 begin {}
 process {
@@ -40,7 +40,7 @@ process {
 
     # SharePoint File copy variables
     $SiteURL = "https://" + $tenantDomain + ".sharepoint.com/sites/TechnologyTeam"
-    $FileRelativeURL = "/sites/TechnologyTeam/Shared Documents/M365Management/M365DataFiles/ALGASchema.xlsx"
+    $FileRelativeURL = "/sites/TechnologyTeam/Shared Documents/M365Management/M365DataFiles/NALSchema.xlsx"
     $DownloadPath = $dataFileBaseLoc + "\ExcelDataFiles"
 
     # Working Copy
@@ -64,7 +64,7 @@ process {
                                                              -masterLogFilePathAndName $masterLogFilePathAndName;
     }
     # Assign values to variables
-    [string]$algaSchemaFilePathAndName = $dataFileBaseLoc + "\ExcelDataFiles\ALChapterSchema.xlsx";
+    [string]$NALSchemaFilePathAndName = $dataFileBaseLoc + "\ExcelDataFiles\ALChapterSchema.xlsx";
     [string]$tenantDefaultsPageName = "M365TenantDefaults";
     [int]$tenantDefaultsStartRow = 1;
     [string]$rolebaseEmailsPageName = "RoleBasedEmailAddresses";
@@ -75,7 +75,7 @@ process {
     .\M365Management\CreateTenantRoleBasedEmails.ps1 -tenantCredentials $myCredentials `
                                                      -tenantAbbreviation $tenantAbbreviation `
                                                      -tenantDomain $tenantDomain `
-                                                     -alChapterSchemaFilePathAndName $algaSchemaFilePathAndName `
+                                                     -alChapterSchemaFilePathAndName $NALSchemaFilePathAndName `
                                                      -tenantDefaultsPageName $tenantDefaultsPageName `
                                                      -tenantDefaultsStartRow $tenantDefaultsStartRow `
                                                      -roleBasedEmailsPageName $rolebaseEmailsPageName `

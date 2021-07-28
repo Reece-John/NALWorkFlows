@@ -12,7 +12,7 @@ if($machineUsage -ne "Production")
     Set-Location $startLoc;
 }
 
-[string]$tenantAbbreviation = "ALSA";
+[string]$tenantAbbreviation = "NAL";
 
 .\M365Management\TaskStubs\TaskManageM365TenantUsers.ps1 $tenantAbbreviation;
 

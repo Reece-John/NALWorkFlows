@@ -31,7 +31,7 @@ UpdatedDate: 11/07/2020
 [cmdletbinding()]
 Param(
       [Parameter(Mandatory=$True,Position=0)][System.Management.Automation.PSCredential]$tenantCredentials
-     ,[Parameter(Mandatory=$True,Position=1)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+     ,[Parameter(Mandatory=$True,Position=1)][ValidateSet("NAL")][string]$tenantAbbreviation
      ,[Parameter(Mandatory=$True,Position=2)][string]$tenantDomain
      ,[Parameter(Mandatory=$True,Position=3)][string]$masterLogFilePathAndName
 )

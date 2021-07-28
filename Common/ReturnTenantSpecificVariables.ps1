@@ -36,7 +36,7 @@ UpdatedDate: 03/23/2021
 #>
 [cmdletbinding()]
 Param(
-       [Parameter(Mandatory=$True,Position=0)][ValidateSet("ALGA","ALSA","ALLV")][string]$tenantAbbreviation
+       [Parameter(Mandatory=$True,Position=0)][ValidateSet("NAL")][string]$tenantAbbreviation
     )
 begin {}
 process {
@@ -80,67 +80,25 @@ process {
 
     switch ( $tenantAbbreviation )
     {
-        'ALGA'
+        'NAL'
         {
-            $chapterRosterTitle = "Assistance League Georgetown Area";
+            $chapterRosterTitle = "Assistance League";
             $psAdminUserName = "MJohn";
-            $DomainName = "ALGeorgetownArea";
-            $teamSiteName = "ALGA Chapter Team";
-            $devStartupDir   = "C:\Users\" + $CurrentUserName + "\Source\Repos\PSWorkFlows";
-            $UserExportFileName = "ALGA Nightly User Export";
+            $DomainName = "AssistanceLeague";
+            $teamSiteName = "National Assistance League";
+            $devStartupDir   = "C:\Users\" + $CurrentUserName + "\Source\Repos\NALPSWorkFlows";
+            $UserExportFileName = "NAL Nightly User Export";
             $TenantSchemaFileName = "ALChapterSchema";
             $UserExportFileExtension = "csv";
 
             $notifyIfDailyExportFileIsMissing = $true;
 
             $fiscalYearStartDay = 1;
-            $fiscalYearStartMonth = 6;
-            $fiscalYearStartDate = ReturnYearStartDate -yearStartDay $fiscalYearStartDay -yearStartMonth $fiscalYearStartMonth -currentDate (Get-Date);
-
-            $volunteerYearStartDay = 1;
-            $volunteerYearStartMonth = 6;
-            $volunteerYearStartDate = ReturnYearStartDate -yearStartDay $volunteerYearStartDay -yearStartMonth $volunteerYearStartMonth -currentDate (Get-Date);
-        }
-        'ALSA'
-        {
-            $chapterRosterTitle = "Assistance League San Antonio";
-            $psAdminUserName = "MJohn";
-            $DomainName = "ALSanAntonio";
-            $teamSiteName = "ALSA Chapter Team";
-            $devStartupDir   = "C:\Users\" + $CurrentUserName + "\Source\Repos\PSWorkFlows";
-            $UserExportFileName = "ALSA User Export";
-            $TenantSchemaFileName = "ALChapterSchema";
-            $UserExportFileExtension = "csv";
-
-            $notifyIfDailyExportFileIsMissing = $false;
-
-            $fiscalYearStartDay = 1;
-            $fiscalYearStartMonth = 6;
+            $fiscalYearStartMonth = 9;
             $fiscalYearStartDate = ReturnYearStartDate -yearStartDay $fiscalYearStartDay -yearStartMonth $fiscalYearStartMonth -currentDate (Get-Date);
 
             $volunteerYearStartDay = 1;
             $volunteerYearStartMonth = 1;
-            $volunteerYearStartDate = ReturnYearStartDate -yearStartDay $volunteerYearStartDay -yearStartMonth $volunteerYearStartMonth -currentDate (Get-Date);
-        }
-        'ALLV'
-        {
-            $chapterRosterTitle = "Assistance League Las Vagas";
-            $psAdminUserName = "CWarman";
-            $DomainName = "ALLasVegas";
-            $teamSiteName = "ALLV Chapter Team";
-            $devStartupDir   = "C:\Users\" + $CurrentUserName + "\Source\Repos\PSWorkFlows";
-            $UserExportFileName = "ALLV User Export";
-            $TenantSchemaFileName = "ALChapterSchema";
-            $UserExportFileExtension = "csv";
-            
-            $notifyIfDailyExportFileIsMissing = $false;
-
-            $fiscalYearStartDay = 1;
-            $fiscalYearStartMonth = 6;
-            $fiscalYearStartDate = ReturnYearStartDate -yearStartDay $fiscalYearStartDay -yearStartMonth $fiscalYearStartMonth -currentDate (Get-Date);
-
-            $volunteerYearStartDay = 1;
-            $volunteerYearStartMonth = 6;
             $volunteerYearStartDate = ReturnYearStartDate -yearStartDay $volunteerYearStartDay -yearStartMonth $volunteerYearStartMonth -currentDate (Get-Date);
         }
         default
