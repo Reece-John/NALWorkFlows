@@ -146,33 +146,48 @@ process {
         [string]$chRole      = $chObj."Role";
         [string]$chLOAStatus = $chObj."LOAStatus";
         [string]$chMC        = $chObj."Membership Classification";
-        if($chType -eq "Community Volunteer")
+        <#
+        Committee
+        Committee Chair
+        Board
+        Staff
+        Advisory Council
+        Appointment
+        #>
+        if($chType -eq "Committee")
         {
-                $alStatus = "CV";
+                $alStatus = "CM";
         }
         else
         {
-            if($chMC -eq "PAL")
+            if($chType -eq "Committee Chair")
             {
-                $alStatus = "PAL";
+                $alStatus = "CC";
             }
             else
             {
-                if($chRole -eq "Nonvoting" -and $chType -eq "Full Member")
+                if($chType -eq "Board")
                 {
-                    $alStatus = "NV";
+                    $alStatus = "B";
                 }
                 else
                 {
-                    if($chType -eq "Full Member" -and $chRole -eq "Voting")
+                    if($chType -eq "Staff")
                     {
-                        if($chLOAStatus -eq "1")
+                        $alStatus = "S";
+                    }
+                    else
+                    {
+                        if($chType -eq "Advisory Council")
                         {
-                            $alStatus = "LOA";
+                            $alStatus = "AC";
                         }
                         else
                         {
-                            $alStatus = "V";
+                            if($chType -eq "Appointment")
+                            {
+                                $alStatus = "A";
+                            }
                         }
                     }
                 }
@@ -428,6 +443,12 @@ process {
         #fill-in a new row getting values from chapter hub object and default object
         $newRow = $endRow + 1;
 
+        if($chObj.DisplayName -eq "Annette Anderson")
+        {
+            [int]$xx = 1;
+            $xx++;
+        }
+
         $m365UserWS.Cells.Item($newRow, $DisplayNameCol                     ) = $chObj.DisplayName;
         $m365UserWS.Cells.Item($newRow, $IndividualIDCol                    ) = $chObj.IndividualID;
         $m365UserWS.Cells.Item($newRow, $ChapterEmailCol                    ) = $chObj.ChapterEmail;
@@ -465,9 +486,6 @@ process {
         $m365UserWS.Cells.Item($newRow, $LOAEndDateCol                      ) = $chObj.LOAEndDate;
         $m365UserWS.Cells.Item($newRow, $LOAStatusCol                       ) = $chObj.LOAStatus;
         $m365UserWS.Cells.Item($newRow, $LOADetailsCol                      ) = $chObj.LOADetails;
-        $m365UserWS.Cells.Item($newRow, $MinTrainingLevelNeededCol          ) = $chObj.MinTrainingLevelNeeded;
-        $m365UserWS.Cells.Item($newRow, $ActualTrainingLevelCol             ) = $chObj.ActualTrainingLevel;
-        $m365UserWS.Cells.Item($newRow, $TrainingStatusCol                  ) = $chObj.TrainingStatus;
         $m365UserWS.Cells.Item($newRow, $EmergencyContactNameCol            ) = $chObj.EmergencyContactName;
         $m365UserWS.Cells.Item($newRow, $EmergencyContactRelationshipCol    ) = $chObj.EmergencyContactRelationship;
         $m365UserWS.Cells.Item($newRow, $EmergencyContactPhoneCol           ) = $chObj.EmergencyContactPhone;
@@ -840,38 +858,6 @@ process {
                 $rowUpdate = $true;
             }
         }
-        <# Not in Chapter Hub
-        if($m365UserWS.Cells.Item($rowNumberFound, $MinTrainingLevelNeededCol).Text -ne $chObj.MinTrainingLevelNeeded)
-        {
-            $logMessage = "Changing " + $chapterEmail + " MinTrainingLevelNeeded: " + $m365UserWS.Cells.Item($rowNumberFound, $MinTrainingLevelNeededCol).Text  + " to " + $chObj.MinTrainingLevelNeeded;
-            .\LogManagement\WriteToLogFile -logFile $masterLogFile -message $logMessage;
-            if(!$testingOnly)
-            {
-                $m365UserWS.Cells.Item($rowNumberFound, $MinTrainingLevelNeededCol) = $chObj.MinTrainingLevelNeeded;
-                $rowUpdate = $true;
-            }
-        }
-        if($m365UserWS.Cells.Item($rowNumberFound, $ActualTrainingLevelCol).Text -ne $chObj.ActualTrainingLevel)
-        {
-            $logMessage = "Changing " + $chapterEmail + " ActualTrainingLevel: " + $m365UserWS.Cells.Item($rowNumberFound, $ActualTrainingLevelCol).Text  + " to " + $chObj.ActualTrainingLevel;
-            .\LogManagement\WriteToLogFile -logFile $masterLogFile -message $logMessage;
-            if(!$testingOnly)
-            {
-                $m365UserWS.Cells.Item($rowNumberFound, $ActualTrainingLevelCol) = $chObj.ActualTrainingLevel;
-                $rowUpdate = $true;
-            }
-        }
-        if($m365UserWS.Cells.Item($rowNumberFound, $TrainingStatusCol).Text -ne $chObj.TrainingStatus)
-        {
-            $logMessage = "Changing " + $chapterEmail + " TrainingStatus: " + $m365UserWS.Cells.Item($rowNumberFound, $TrainingStatusCol).Text  + " to " + $chObj.TrainingStatus;
-            .\LogManagement\WriteToLogFile -logFile $masterLogFile -message $logMessage;
-            if(!$testingOnly)
-            {
-                $m365UserWS.Cells.Item($rowNumberFound, $TrainingStatusCol) = $chObj.TrainingStatus;
-                $rowUpdate = $true;
-            }
-        }
-        #>
         if($m365UserWS.Cells.Item($rowNumberFound, $EmergencyContactNameCol).Text -ne $chObj.EmergencyContactName)
         {
             $logMessage = "Changing " + $chapterEmail + " EmergencyContactName: " + $m365UserWS.Cells.Item($rowNumberFound, $EmergencyContactNameCol).Text  + " to " + $chObj.EmergencyContactName;
@@ -1048,29 +1034,32 @@ process {
 
 
     #region updating APStatus List with Start values
-    # define APStatusTable  variables
-    #[string]$listName = "APStatuses";
-    [string]$ProcessName = "UpdateTenantALChapterSchema";
-    [string]$ProcessCategory = "CHWorkFlow";
-    [DateTime]$ProcessStartDate = Get-date;
-    #[DateTime]$ProcessStartDate = (Get-date).ToUniversalTime();
-    [DateTime]$ProcessStopDateBegins = (Get-date("1/1/1900 00:01")).ToUniversalTime();
-    [DateTime]$SProcessStopDateFinished =( Get-date("1/1/2099 00:01")).ToUniversalTime();
-    [string]$ProcessStatusStart = "Started";
-    [string]$ProcessStatusFinish = "Successful";
-    [string]$ProcessProgressStart = "In-progress";
-    [string]$ProcessProgressFinish = "Completed";
+    if(!$justTesting)
+    {
+        # define APStatusTable  variables
+        #[string]$listName = "APStatuses";
+        [string]$ProcessName = "UpdateTenantALChapterSchema";
+        [string]$ProcessCategory = "CHWorkFlow";
+        [DateTime]$ProcessStartDate = Get-date;
+        #[DateTime]$ProcessStartDate = (Get-date).ToUniversalTime();
+        [DateTime]$ProcessStopDateBegins = (Get-date("1/1/1900 00:01")).ToUniversalTime();
+        [DateTime]$SProcessStopDateFinished =( Get-date("1/1/2099 00:01")).ToUniversalTime();
+        [string]$ProcessStatusStart = "Started";
+        [string]$ProcessStatusFinish = "Successful";
+        [string]$ProcessProgressStart = "In-progress";
+        [string]$ProcessProgressFinish = "Completed";
 
-    .\M365SharePoint\InsertOrUpdateTenantStatusRptList.ps1 -tenantCredentials $tenantCredentials `
-                                                           -tenantAbbreviation $tenantAbbreviation `
-                                                           -tenantDomain $tenantDomain `
-                                                           -ProcessName $ProcessName `
-                                                           -ProcessCategory $ProcessCategory `
-                                                           -StartDate $ProcessStartDate `
-                                                           -StopDate $ProcessStopDateBegins `
-                                                           -ProcessStatus $ProcessStatusStart `
-                                                           -ProcessProgress $ProcessProgressStart `
-                                                           -masterLogFilePathAndName $masterLogFile;
+        .\M365SharePoint\InsertOrUpdateTenantStatusRptList.ps1 -tenantCredentials $tenantCredentials `
+                                                            -tenantAbbreviation $tenantAbbreviation `
+                                                            -tenantDomain $tenantDomain `
+                                                            -ProcessName $ProcessName `
+                                                            -ProcessCategory $ProcessCategory `
+                                                            -StartDate $ProcessStartDate `
+                                                            -StopDate $ProcessStopDateBegins `
+                                                            -ProcessStatus $ProcessStatusStart `
+                                                            -ProcessProgress $ProcessProgressStart `
+                                                            -masterLogFilePathAndName $masterLogFile;
+    }
     #endregion updating APStatus List with Start values
 
     #region setup Excel objects
@@ -1086,7 +1075,7 @@ process {
 
     # if you uncomment this you can see the spreadsheet on the screen as the script runs
     #   This should not be uncommented in production runs
-    #$xl.Visible = $true;
+    $xl.Visible = $true;
     #endregion setup Excel objects
 
     #region NALSchema.xlsx M365Users Sheet column definitions
@@ -1124,25 +1113,27 @@ process {
     [int]$LOAEndDateCol                      = 32;  # AF
     [int]$LOAStatusCol                       = 33;  # AG
     [int]$LOADetailsCol                      = 34;  # AH
-    [int]$MinTrainingLevelNeededCol          = 35;  # AI
-    [int]$ActualTrainingLevelCol             = 36;  # AJ
-    [int]$TrainingStatusCol                  = 37;  # AK
-    [int]$EmergencyContactNameCol            = 38;  # AL
-    [int]$EmergencyContactRelationshipCol    = 39;  # AM
-    [int]$EmergencyContactPhoneCol           = 40;  # AN
-    [int]$EmergencyContactEmailCol           = 41;  # AO
-    [int]$EmergencyContactAltNameCol         = 42;  # AP
-    [int]$EmergencyContactAltRelationshipCol = 43;  # AQ
-    [int]$EmergencyContactAltPhoneCol        = 44;  # AR
-    [int]$EmergencyContactAltEmailCol        = 45;  # AS
-    [int]$CHRecordTypeCol                    = 46;  # AT
-    [int]$CHRoleCol                          = 47;  # AU
-    [int]$CHMembershipClassificationCol      = 48;  # AV
-    [int]$CHTypeCol                          = 49;  # AW
-    [int]$m365UserTypeCol                    = 50;  # AX
-    [int]$ForceChangePasswordCol             = 51;  # AY
-    [int]$BlockCredentialCol                 = 52;  # AZ
-    [int]$LicenseAssignmentCol               = 53;  # BA
+    [int]$EmergencyContactNameCol            = 35;  # AI
+    [int]$EmergencyContactRelationshipCol    = 36;  # AJ
+    [int]$EmergencyContactPhoneCol           = 37;  # AK
+    [int]$EmergencyContactEmailCol           = 38;  # AL
+    [int]$EmergencyContactAltNameCol         = 39;  # AM
+    [int]$EmergencyContactAltRelationshipCol = 40;  # AN
+    [int]$EmergencyContactAltPhoneCol        = 41;  # AO
+    [int]$EmergencyContactAltEmailCol        = 42;  # AP
+    [int]$CHRecordTypeCol                    = 43;  # AQ
+    [int]$CHRoleCol                          = 44;  # AR
+    [int]$CHMembershipClassificationCol      = 45;  # AS
+    [int]$CHTypeCol                          = 46;  # AT
+    [int]$m365UserTypeCol                    = 47;  # AU
+    [int]$ForceChangePasswordCol             = 48;  # AV
+    [int]$BlockCredentialCol                 = 49;  # AW
+    [int]$LicenseAssignmentCol               = 50;  # AX
+
+
+
+
+
 
     [string]$FirstNameLetter = Convert-ToLetter $FirstNameCol;
     [string]$LastNameLetter = Convert-ToLetter $LastNameCol;
@@ -1200,7 +1191,8 @@ process {
                 # if any column compare fails then update
                 $logMessage = "ID: " + $chListObj."Individual ID" + " - User: " + $chListObj."Last Name" + ", " + $chListObj."First Name" + " Checking for Updates";
                 .\LogManagement\WriteToLogFile -logFile $masterLogFile -message $logMessage;
-                UpdateRowAsNeeded -m365UserWS $m365UsersWS -rowNumberFound $retObj.RowNumber -chObj $chObj -testingOnly $testingOnly;
+                #UpdateRowAsNeeded -m365UserWS $m365UsersWS -rowNumberFound $retObj.RowNumber -chObj $chObj -testingOnly $testingOnly;
+                UpdateRowAsNeeded -m365UserWS $m365UsersWS -rowNumberFound $retObj.RowNumber -chObj $chObj -testingOnly $false;
             }
             else
             {
@@ -1209,7 +1201,8 @@ process {
                     # InsertRow using Chapter Hub object and Site Default Object
                     $logMessage = "ID: " + $chListObj."Individual ID" + " - Adding User " + $chListObj."Last Name" + ", " + $chListObj."First Name";
                     .\LogManagement\WriteToLogFile -logFile $masterLogFile -message $logMessage;
-                    if(!$testingOnly)
+                    #if(!$testingOnly)
+                    if($true)
                     {
                         InsertRowAtEnd -m365UserWS $m365UsersWS -defaultObj $siteDefaultObjs[0] -chObj $chObj;
                     }
@@ -1273,19 +1266,22 @@ process {
     #endregion clean up Excel stuff still in memory
 
     #region updating APStatus List with finish values
-    $SProcessStopDateFinished = (Get-Date).ToLocalTime();
-    #$SProcessStopDateFinished = (Get-Date).ToUniversalTime();
+    if(!$justTesting)
+    {
+        $SProcessStopDateFinished = (Get-Date).ToLocalTime();
+        #$SProcessStopDateFinished = (Get-Date).ToUniversalTime();
 
-    .\M365SharePoint\InsertOrUpdateTenantStatusRptList.ps1 -tenantCredentials $tenantCredentials `
-                                                           -tenantAbbreviation $tenantAbbreviation `
-                                                           -tenantDomain $tenantDomain `
-                                                           -ProcessName $ProcessName `
-                                                           -ProcessCategory $ProcessCategory `
-                                                           -StartDate $ProcessStartDate `
-                                                           -StopDate $SProcessStopDateFinished `
-                                                           -ProcessStatus $ProcessStatusFinish `
-                                                           -ProcessProgress $ProcessProgressFinish `
-                                                           -masterLogFilePathAndName $masterLogFile;
+        .\M365SharePoint\InsertOrUpdateTenantStatusRptList.ps1 -tenantCredentials $tenantCredentials `
+                                                            -tenantAbbreviation $tenantAbbreviation `
+                                                            -tenantDomain $tenantDomain `
+                                                            -ProcessName $ProcessName `
+                                                            -ProcessCategory $ProcessCategory `
+                                                            -StartDate $ProcessStartDate `
+                                                            -StopDate $SProcessStopDateFinished `
+                                                            -ProcessStatus $ProcessStatusFinish `
+                                                            -ProcessProgress $ProcessProgressFinish `
+                                                            -masterLogFilePathAndName $masterLogFile;
+    }
     #endregion APStatus List with finish values
 }
 end{}

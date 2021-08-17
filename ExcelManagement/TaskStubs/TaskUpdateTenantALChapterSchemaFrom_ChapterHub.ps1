@@ -33,8 +33,8 @@ process {
     [bool]$upLoadALChapterSchemaFile = $true;
     if($justTesting)
     {
-        $downLoadChapterHubExportFile = $true;
-        $downLoadALChapterSchemaFile = $true;
+        $downLoadChapterHubExportFile = $false;
+        $downLoadALChapterSchemaFile = $false;
         $upLoadALChapterSchemaFile = $false;
     }
 
@@ -52,11 +52,11 @@ process {
 
     [string]$downloadPath = $tenantObj.PSStartUpDir + "\" + $tenantAbbreviation + "\ExcelDataFiles";
 
-    [string]$downloadSchemaFileName = "ALChapterSchema.xlsx";
+    [string]$downloadSchemaFileName = $tenantObj.TenantSchemaFileName + "." + $tenantObj.TenantSchemaFileExtension;
     [string]$uploadSchemaFileName = $downloadSchemaFileName; # after updating, return the same file
     [string]$chExportDownloadFileName = "Not Found"; # searched for and then returned; This is the default if it not found
     [string]$baseExportFileName = $tenantObj.UserExportFileName;
-    [string]$baseExportFileExtension = "csv";
+    [string]$baseExportFileExtension = $tenantObj.UserExportFileExtension;
 
     Get-Process -Name "Excel" -ErrorAction Ignore | Stop-Process -Force
 
@@ -90,7 +90,7 @@ process {
     {
         if($tenantAbbreviation -eq "NAL")
         {
-            $chExportDownloadFileName = "NAL: User Export 20210106 120800.csv";
+            $chExportDownloadFileName = "NAL User Export 20210728 020432.csv";
         }
     }
     #endregion get name of latest copy of Chapter Hub user CSV export file

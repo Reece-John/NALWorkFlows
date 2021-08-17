@@ -34,7 +34,7 @@ process {
 
     
     [string]$domainAndCurrentUser = whoami;
-    $domain = $domainAndCurrentUser.Substring(0, $domainAndCurrentUser.IndexOf("\"));
+    #$domain = $domainAndCurrentUser.Substring(0, $domainAndCurrentUser.IndexOf("\"));
     $CurrentUser = $domainAndCurrentUser.Substring($domainAndCurrentUser.IndexOf("\") + 1 );
     $CurrentUser = $CurrentUser.Replace('.', '');
     $CurrentUser = $CurrentUser.Replace(' ', '');

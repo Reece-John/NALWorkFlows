@@ -6,6 +6,7 @@
 Clear-Host;
 
 [string]$tenantAbbreviation = "NAL";
+[bool]$justTesting = $true;
 
 
 # Set relative Location based off of production Machine or development machine
@@ -19,5 +20,5 @@ if($null -eq $machineUsage -or $machineUsage -ne "Production")
 }
 
 
-.\ExcelManagement\TaskStubs\TaskUpdateTenantALChapterSchemaFrom_ChapterHub.ps1 $tenantAbbreviation;
+.\ExcelManagement\TaskStubs\TaskUpdateTenantALChapterSchemaFrom_ChapterHub.ps1 -tenantAbbreviation $tenantAbbreviation -justTesting $justTesting;
 

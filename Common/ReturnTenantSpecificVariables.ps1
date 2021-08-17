@@ -85,13 +85,15 @@ process {
             $chapterRosterTitle = "Assistance League";
             $psAdminUserName = "MJohn";
             $DomainName = "AssistanceLeague";
+            $DomainExtension = "org";
             $teamSiteName = "National Assistance League";
             $devStartupDir   = "C:\Users\" + $CurrentUserName + "\Source\Repos\NALPSWorkFlows";
-            $UserExportFileName = "NAL Nightly User Export";
-            $TenantSchemaFileName = "ALChapterSchema";
+            $UserExportFileName = "NAL User Export";
             $UserExportFileExtension = "csv";
-
-            $notifyIfDailyExportFileIsMissing = $true;
+            $TenantSchemaFileName = "ALM365Schema";
+            $TenantSchemaFileExtension = "xlsx";
+            
+            $notifyIfDailyExportFileIsMissing = $false;
 
             $fiscalYearStartDay = 1;
             $fiscalYearStartMonth = 9;
@@ -115,17 +117,18 @@ process {
         DevStartUpDir                    = $devStartUpDir
         DomainExtension                  = $DomainExtension
         DomainName                       = $DomainName
-        FiscalYearStartDy                = $fiscalYearStartDay
+        FiscalYearStartDay               = $fiscalYearStartDay
         FiscalYearStartMonth             = $fiscalYearStartMonth
         FiscalYearStartDate              = $fiscalYearStartDate
         NotifyIfDailyExportFileIsMissing = $notifyIfDailyExportFileIsMissing
         PSAdminUser                      = $psAdminUserName
         PSStartUpDir                     = $PSStartUpDir
         TenantSchemaFileName             = $TenantSchemaFileName
+        TenantSchemaFileExtension        = $TenantSchemaFileExtension
         TeamSiteName                     = $teamSiteName
         UserExportFileName               = $UserExportFileName
         UserExportFileExtension          = $UserExportFileExtension
-        VolunteerYearStartDay            = $volunteerYearStartDat
+        VolunteerYearStartDay            = $volunteerYearStartDay
         VolunteerYearStartMonth          = $volunteerYearStartMonth
         VolunteerYearStartDate           = $volunteerYearStartDate
        }
